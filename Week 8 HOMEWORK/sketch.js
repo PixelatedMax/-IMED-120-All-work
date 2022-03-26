@@ -1,8 +1,16 @@
+let osc;
+
 function setup() {
   // put setup code here
     createCanvas(windowWidth, windowHeight);
     background(220);
     strokeWeight(1);
+    
+    osc = new p5.Oscillator();
+    osc.setType("sine");
+    osc.freq(0);
+    osc.amp(1000);
+    osc.start();
 }
 
 function draw() {
@@ -27,4 +35,9 @@ for (let bK2 = 0; bK2 < 3; bK2++) {
     fill(0);
     rect(1155 + (bK2*105), 100, w - 25, h - 125, 20);
 }
+}
+
+if(mouseX > 100 && mouseX < 150 && mouseY > 100 && mouseY < h && mouseIsPressed){
+    osc.freq(0);
+    osc.amp(1000);
 }
