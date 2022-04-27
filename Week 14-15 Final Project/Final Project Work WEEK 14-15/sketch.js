@@ -43,7 +43,7 @@ function draw() {
 //GAME IS HERE
     if (mode==1) {
         if (frameCount === 1 || frameCount % 30 === 0) {
-            var content = parseInt(random(3), 3);
+            var content = parseInt(random(4), 4);
         }
     //CIRCLE
             if (content === 0) {
@@ -78,14 +78,14 @@ function draw() {
         fill(colors[4]);
         textSize(25);
         text('Score: ' + score, width/2, height/2 - 200);
-        if (score === 50) {
+        if (score === 30) {
              mode = 2;
         }
     //Numbers and Text
         fill(colors[4]);
         textSize(25);
         text('Press SPACEBAR when final circle turns red', width/2, height/2 - 125);
-        text('Reach a score of 50 to win', width/2, height/2 - 80);
+        text('Reach a score of 30 to win', width/2, height/2 - 80);
         
         fill(colors[5]);
         textSize(40);
@@ -96,11 +96,13 @@ function draw() {
     if (mode === 2) {
         fill(colors[4]);
         text('You Win!', width/2, height/2);
-        }
+        text('Press ENTER to restart', width/2, height/2 + 50);
+    }
 //Fail Screen
     if (mode === 3) {
         fill(colors[4]);
-        text('You Fail.', width/2, height/2);
+        text('You Fail', width/2, height/2);
+        text('Press ENTER to restart', width/2, height/2 + 50);
     }
 }
 
@@ -112,8 +114,16 @@ function keyPressed() {
         setTimeout(endInput, 50);
     }
     
-    if (keyCode===ENTER) {
+    if (keyCode===ENTER && mode===0) {
         mode=1;
+    }
+    if (keyCode===ENTER && mode === 3) {
+        mode=0;
+        score=0;
+    }
+    if (keyCode===ENTER && mode === 2) {
+        mode=0;
+        score=0;
     }
 }
 
